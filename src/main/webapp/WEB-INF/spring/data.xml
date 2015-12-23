@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:aop="http://www.springframework.org/schema/aop"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:p="http://www.springframework.org/schema/p"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/tx
+                http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Настройка управления транзакциями с помощью аннотаций-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!-- Менеджер транзакций-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- бин dataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/contacts" />
+        <property name="username" value="ruslan_donchenko" />
+        <property name="password" value="65536ru" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.expert_service.phonecontacts.domain"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.max_fetch_depth">3</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="persistenceExceptionTranslationProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+
+</beans:beans>
