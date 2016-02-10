@@ -8,7 +8,7 @@ import java.util.List;
  * @author Донченко Руслан
  */
 public interface EntityService <T> {
-    public T getEntityById(Class entityClass, int id);
+    public T getEntityById(Class entityClass, String id);
     public void saveEntity(T entity);
     public void deleteEntity(T entity);
     public void updateEntity(T entity);

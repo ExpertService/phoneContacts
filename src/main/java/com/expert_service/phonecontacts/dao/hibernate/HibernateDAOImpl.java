@@ -49,11 +49,11 @@ public abstract class HibernateDAOImpl<T> implements Dao<T> {
         getSession().delete(entity);
     }
 
-    public void deleteObject(Number id) {
+    public void deleteObject(String id) {
         getSession().delete(getObject(id));
     }
 
-    public T getObject(Number id) {
+    public T getObject(String id) {
         return (T) getSession().get(getEntityClass(),id);
     }
 

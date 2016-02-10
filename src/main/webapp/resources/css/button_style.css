@@ -1,0 +1,10 @@
+button {
+    background: #BCEBDD; /* Цвет фона */
+    padding: 7px 30px; /* Поля вокруг текста */
+    font-size: 13px; /* Размер шрифта */
+    font-weight: bold; /* Насыщенность шрифта */
+    color: white;; /* Цвет шрифта */
+    text-align: center; /* Надпись на кнопке по центру */
+    border: solid 1px #73C8F0; /* Параметры рамки кнопки */
+    cursor: pointer; /* Изменение вида курсора при наведении*/
+}

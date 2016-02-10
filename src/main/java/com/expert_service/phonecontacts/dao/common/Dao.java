@@ -13,9 +13,9 @@ public interface Dao<T> {
 
     public void deleteObject(T entity);
 
-    public void deleteObject(Number id);
+    public void deleteObject(String id);
 
-    public T getObject(Number id);
+    public T getObject(String id);
 
     public List<T> getObjects();
 

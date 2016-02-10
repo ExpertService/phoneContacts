@@ -7,6 +7,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
     <title>Контакты</title>
+    <script src="${pageContext.request.contextPath}/resources/js/lib/jquery-1.8.0.min.js"></script>
+    <link href="${pageContext.request.contextPath}/resources/css/table_style.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/resources/css/button_style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
@@ -20,19 +23,20 @@
             <th>Номер телефона</th>
             <th>Тип контакта</th>
             <th>Комментарий</th>
-            <th>&nbsp;</th>
         </tr>
         <c:forEach items="${contactsList}" var="contact">
             <tr>
-                <td>${contact.idClient}</td>
-                <td>${contact.clientFio}</td>
-                <td>${contact.phone.phoneNumber}</td>
-                <td>${contact.phone.phoneType}</td>
-                <td>${contact.phone.comment}</td>
+                <td name="idClient" class="contact">${contact.idClient}</td>
+                <td name="clientFio" class="contact">${contact.clientFio}</td>
+                <td name="phoneNumber" class="phone">${contact.phone.phoneNumber}</td>
+                <td name="phoneType" class="phone">${contact.phone.phoneType}</td>
+                <td name="comment" class="phone">${contact.phone.comment}</td>
             </tr>
         </c:forEach>
     </table>
+    <br>
+    <button id="btnSaveChanges">Save records</button>
 </c:if>
-
+<script type="application/javascript" src="${pageContext.request.contextPath}/resources/js/editableTable.js"></script>
 </body>
 </html>

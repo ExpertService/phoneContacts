@@ -2,6 +2,8 @@ package com.expert_service.phonecontacts.service;
 
 import com.expert_service.phonecontacts.dao.ClientsDAO;
 import com.expert_service.phonecontacts.domain.ClientsEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +21,10 @@ public class ClientsServicesImpl implements ClientsServices {
     @Autowired
     private ClientsDAO clientDAO;
 
+    private static final Logger log = LogManager.getLogger(ClientsServicesImpl.class.getName());
+
     @Transactional
-    public ClientsEntity getEntityById(Class entityClass, int id) {
+    public ClientsEntity getEntityById(Class entityClass, String id) {
         return clientDAO.getObject(id);
     }
 
@@ -45,6 +49,7 @@ public class ClientsServicesImpl implements ClientsServices {
 
     @Transactional
     public List<ClientsEntity> getAllClientsWithPhones() {
+        log.debug("Getting all clients!");
         return clientDAO.getAllClientsWithPhones();
     }
 }
